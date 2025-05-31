@@ -120,3 +120,44 @@ C:\Users\papillon_rouge>
 
 ![](Attached_materials/GitBash13.jpg)
 
+## Смена основной кодировки системы
+
+Для корректной работы `Unix`-утилит и `Python` в особенности (поскольку и с русскими символами будет проводиться работа) необходимо унифицировать кодировку всей системы с кодировкой, в которой будут приходить входные и ожидаться выходные данные - `UTF-8`. Лекция о том, что из себя представляет кодировка, какие кодировки бывают, почему этот вопрос так важен и какие [ОПНАКЕЛШ](https://web.archive.org/web/20120918205702/http://ru.wikipedia.org/wiki/Кракозябры) могут возникнуть при работе, читается в рамках данного курса. При настройке рабочего окружения главной задачей стоит не изучение вопроса, а отсутствие возникающей проблемы в системе. 
+
+Для настройки кодировки необходимо:
+
+ + Открыть меню "Регион" (`Win+R`: `intl.cpl`)
+   ![](Attached_materials/intl00.jpg)
+
+ + Перейти на вкладку "Дополнительно", выбрать пункт "Изменить язык системы"
+   ![](Attached_materials/intl01.jpg)
+   ![](Attached_materials/intl02.jpg)
+
+ + Установить галочку на пункте "Бета-версия: Использовать Юникод (UTF-8) для поддержки языка во всем мире", при подтверждении выполнить перезагрузку системы
+   ![](Attached_materials/intl03.jpg)
+
+Проверкой параметра выступят выводимые данные утилиты `locale`, а также корректная работа `Python` с русским текстом:
+
+```console
+papillon_rouge@LAPTOP-ST8LPKK7 MINGW64 ~/Methodics_Python (master)
+$ locale
+LANG=ru_RU.UTF-8
+LC_CTYPE="ru_RU.UTF-8"
+LC_NUMERIC="ru_RU.UTF-8"
+LC_TIME="ru_RU.UTF-8"
+LC_COLLATE="ru_RU.UTF-8"
+LC_MONETARY="ru_RU.UTF-8"
+LC_MESSAGES="ru_RU.UTF-8"
+LC_ALL=
+
+papillon_rouge@LAPTOP-ST8LPKK7 MINGW64 ~/Methodics_Python (master)
+$ py
+Python 3.13.2 (tags/v3.13.2:4f8bb39, Feb  4 2025, 15:23:48) [MSC v.1942 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> print("бНОПНЯ")
+бНОПНЯ
+>>>
+
+papillon_rouge@LAPTOP-ST8LPKK7 MINGW64 ~/Methodics_Python (master)
+$
+```
